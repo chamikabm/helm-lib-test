@@ -1,0 +1,9 @@
+charts/istiolib-test/charts
+charts/**/Chart.lock
+**/__snapshot__
+.git
+.github
+*.tgz
+node_modules
+*.log
+tmp

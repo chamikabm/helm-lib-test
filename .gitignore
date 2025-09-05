@@ -1,0 +1,13 @@
+# General
+.DS_Store
+*.swp
+*.tmp
+*.log
+
+# Helm build artifacts
+charts/
+Chart.lock
+
+# IDE
+.idea/
+.vscode/
