@@ -1,0 +1,10 @@
+apiVersion: v2
+name: istiolib
+description: Helm library chart providing a reusable Istio Telemetry named template.
+type: library
+version: 0.1.0
+appVersion: "1.0.0"
+keywords:
+  - istio
+  - telemetry
+  - library

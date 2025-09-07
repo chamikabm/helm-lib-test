@@ -1,0 +1,46 @@
+suite: "istiolib test harness"
+templates:
+  - telemetry.yaml
+
+tests:
+  - it: "renders with provided sampling and selector"
+    set:
+      istio:
+        randomSamplingPercentage: 22.2
+        selector:
+          app: demo
+    asserts:
+      - hasDocuments:
+          count: 1
+      - isKind:
+          of: Telemetry
+      - equal:
+          path: spec.tracing[0].randomSamplingPercentage
+          value: 22.2
+      - equal:
+          path: spec.selector.matchLabels.app
+          value: demo
+
+  - it: "defaults sampling to 10 when sampling not set"
+    set:
+      istio:
+        selector:
+          app: demo
+    asserts:
+      - equal:
+          path: spec.tracing[0].randomSamplingPercentage
+          value: 10
+      - equal:
+          path: spec.selector.matchLabels.app
+          value: demo
+
+  - it: "omits selector when not provided"
+    set:
+      istio:
+        randomSamplingPercentage: 55.5
+    asserts:
+      - notExists:
+          path: spec.selector
+      - equal:
+          path: spec.tracing[0].randomSamplingPercentage
+          value: 55.5

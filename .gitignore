@@ -5,8 +5,8 @@
 *.log
 
 # Helm build artifacts
-charts/
 Chart.lock
+**/*.tgz
 
 # IDE
 .idea/
